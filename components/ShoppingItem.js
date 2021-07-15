@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text,Image } from "react-native";
-import { CostumeButton } from "../components";
+import { CustomButton } from "../components";
 
 const ShoppingItem = (props) => {
 
@@ -11,27 +11,27 @@ return(
     <Image source={{uri: image_url,}} style={styles.image}></Image>
     <View style={styles.description}>
         <Text style={styles.text}>{name}</Text>
-        <Text style={styles.text}>{price}</Text>
+        <Text style={styles.text}>{price/100+"₪"}</Text>
     </View>
-    <CostumeButton active_in_store={active_in_store}></CostumeButton>
+    <CustomButton available={active_in_store}></CustomButton>
 </View>
 );
 }
 
 const styles = StyleSheet.create({
     container: {
-        height:100,
         backgroundColor:"#fff",
         flex:1,
         flexDirection:"row-reverse",
-        paddingHorizontal:16,
+        justifyContent:"space-around",
+        paddingHorizontal:8,
         marginBottom:1,
         alignItems:"center"
     },
     image: {
         height:90,
         width:90,
-        paddingHorizontal:10
+        marginLeft:10
     },
     description: {
         flex:1,
@@ -41,6 +41,5 @@ const styles = StyleSheet.create({
         textAlign:"right"
     }
 });
-
 
 export default ShoppingItem;

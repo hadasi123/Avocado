@@ -1,23 +1,25 @@
 import React, {useState } from "react";
-import { View, StyleSheet, BackHandler, Keyboard,  TextInput } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { View, StyleSheet,TextInput, TouchableOpacity } from "react-native";
 import * as strings from "../constants/strings";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Searcher = (props) => {
 
-    const [text, onChangeText] = useState("בירה");
+    const [text, onChangeText] = useState("");
 
     return(
         <View style={styles.container}>
+
             <TextInput  style={styles.input}
-                        onEndEditing={() => text !== "" && props.callback(text)}
-                        multiline={true}
-                        maxLength={40}
+                        multiline={false}
+                        maxLength={20}
                         onChangeText={onChangeText}
                         value={text}
-                        placeholder={strings.search_hint}></TextInput>
-            <MaterialCommunityIcons name="magnify" color={"#0398fc"} size={30} />
+                        placeholder={strings.search_hint} />
+            <TouchableOpacity
+                onPress={()=>props.callback(text)}>
+                <MaterialCommunityIcons name="magnify" color={"#0398fc"} size={30} />
+            </TouchableOpacity>
 
         </View>
     )
@@ -36,6 +38,6 @@ const styles = StyleSheet.create({
         flex:1,
         color:"#ffffff",
         paddingHorizontal:20}
-
 });
+
 export default Searcher;

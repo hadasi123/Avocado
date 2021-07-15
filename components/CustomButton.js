@@ -1,14 +1,26 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import * as strings from "../constants/strings";
 
-const CostumeButton = (props) => {
+const CustomButton = (props) => {
 
     return(
         <View style={styles.container}>
-            <MaterialCommunityIcons name="cart" color={"#000000"} size={20} />
-            <Text style={styles.text}>{props.active_in_store? "הוסף" : "לא זמין"}</Text>
+            {props.available? 
+                <MaterialCommunityIcons 
+                    name="cart"
+                    color={"#000000"}
+                    size={20} /> :
+                <MaterialCommunityIcons
+                    name="close-octagon"
+                    color={"#000000"}
+                    size={20} />}
+                
+            <Text style={styles.text}>
+                {props.available?
+                    strings.add_to_cart : 
+                    strings.not_available}</Text>
         </View>
     );
 }
@@ -35,4 +47,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CostumeButton;
+export default CustomButton;

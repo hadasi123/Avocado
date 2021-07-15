@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, FlatList, StyleSheet } from 'react-native';
+import { SafeAreaView, FlatList } from 'react-native';
 import {ShoppingItem} from "../components";
 
 const List = (props) => {
@@ -14,7 +14,7 @@ const List = (props) => {
     );
   
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView>
         <FlatList
           data={props.data}
           renderItem={renderItem}
@@ -23,19 +23,5 @@ const List = (props) => {
       </SafeAreaView>
     );
   }
-  
-  const styles = StyleSheet.create({
-    container: {
-    },
-    item: {
-      backgroundColor: '#f9c2ff',
-      padding: 20,
-      marginVertical: 8,
-      marginHorizontal: 16,
-    },
-    title: {
-      fontSize: 32,
-    },
-  });
 
 export default List;

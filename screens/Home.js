@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text, BackHandler, Keyboard } from "react-native";
+import { View} from "react-native";
 import {Header, Searcher, List} from "../components";
 import axios from 'axios';
 
-const Home = (props) => {
+const Home = () => {
 
     var instance = axios.create({
         baseURL: 'https://ops.avo.co.il/api/v1/products/search?',
         headers: {'Accept': 'application/json', 'X-Warehouse-Code':'tel_aviv'}
       });
 
-    const [query, setQuery] = useState("בירה");
+    const [query, setQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     var newResults = [];
 
     const fetchResults = async () => {
-        instance.defaults.params = ({'by_company_id':'129', 'mode':'suggest', 'page':'1', 'per_page':'45', 'query':query})
+
+      console.log("inside fetch")
+
+        instance.defaults.params = ({   'by_company_id':'129',
+                                        'mode':'suggest',
+                                        'page':'1',
+                                        'per_page':'45',
+                                        'query':query})
         instance.get()
         .then(res => {
         const results = res.data.products;
@@ -29,6 +36,7 @@ const Home = (props) => {
 
     useEffect(() => {
         fetchResults();
+        console.log("inside use effect")
     }, [query]);
 
     const updateQuery = (newQuery) => {
@@ -42,7 +50,6 @@ const Home = (props) => {
             <List data={searchResults}></List>
         </View>
       );
-
 }
 
 export default Home;
