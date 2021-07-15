@@ -1,16 +1,12 @@
-import React, { useRef, useEffect, useState } from "react";
-import { View, StyleSheet, Text, BackHandler, Keyboard, TouchableWithoutFeedback as RNTouchable } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import React from "react";
+import { View, Text} from "react-native";
 
-
-
-const Categories = (props) => {
+const Categories = () => {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor:"#328763" }}>
           <Text>Categories!</Text>
         </View>
       );
-
 }
 
 export default Categories;

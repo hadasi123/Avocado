@@ -1,47 +1,22 @@
 import React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
+import { SafeAreaView, FlatList, StyleSheet } from 'react-native';
 import {ShoppingItem} from "../components";
 
-const DATA = [
-    {
-      id: '1',
-      title: 'Item',
-    },
-    {
-      id: '2',
-      title: 'Item',
-    },
-    {
-        id: '3',
-        title: 'Item',
-    },
-      {
-        id: '4',
-        title: 'Item',
-    },
-      {
-        id: '5',
-        title: 'Item',
-    },
-      {
-          id: '6',
-          title: 'Item',
-        },
-        {
-          id: '7',
-          title: 'Item',
-        },
-  ];
-  
-  const List = () => {
+const List = (props) => {
+
     const renderItem = ({ item }) => (
-        <ShoppingItem></ShoppingItem>
+        <ShoppingItem
+            name={item.name}
+            price={item.price}
+            image_url={item.image_url}
+            active_in_store={item.active_in_store}
+        ></ShoppingItem>
     );
   
     return (
       <SafeAreaView style={styles.container}>
         <FlatList
-          data={DATA}
+          data={props.data}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />
@@ -51,7 +26,6 @@ const DATA = [
   
   const styles = StyleSheet.create({
     container: {
-      backgroundColor:"#666666",
     },
     item: {
       backgroundColor: '#f9c2ff',

@@ -1,12 +1,9 @@
-import React, { useRef, useEffect, useState } from "react";
-import { View, StyleSheet, Text, BackHandler, Keyboard, TouchableWithoutFeedback as RNTouchable } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import React from "react";
+import { View, Text } from "react-native";
 
-
-
-const Cart = (props) => {
+const Cart = () => {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor:"#888655" }}>
           <Text>Cart!</Text>
         </View>
       );

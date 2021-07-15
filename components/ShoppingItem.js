@@ -1,16 +1,19 @@
-import React, { useRef, useEffect, useState } from "react";
-import { View, StyleSheet, Text,Image, BackHandler, Keyboard } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import React from "react";
+import { View, StyleSheet, Text,Image } from "react-native";
+import { CostumeButton } from "../components";
 
 const ShoppingItem = (props) => {
+
+const {name, price, image_url, active_in_store} = props
+
 return(
 <View style={styles.container}>
-    <Image source={require('../assets/logo.png')} style={styles.image}></Image>
+    <Image source={{uri: image_url,}} style={styles.image}></Image>
     <View style={styles.description}>
-        <Text style={styles.text}>שם המוצר</Text>
-        <Text style={styles.text}>מחיר</Text>
-        <Text style={styles.text}>מידע נוסף</Text>
+        <Text style={styles.text}>{name}</Text>
+        <Text style={styles.text}>{price}</Text>
     </View>
+    <CostumeButton active_in_store={active_in_store}></CostumeButton>
 </View>
 );
 }
@@ -18,7 +21,7 @@ return(
 const styles = StyleSheet.create({
     container: {
         height:100,
-        backgroundColor:"#f2f2f2",
+        backgroundColor:"#fff",
         flex:1,
         flexDirection:"row-reverse",
         paddingHorizontal:16,
@@ -35,9 +38,8 @@ const styles = StyleSheet.create({
         flexDirection:"column",
     },
     text: {
-
+        textAlign:"right"
     }
-
 });
 
 
