@@ -11,16 +11,7 @@ const Home = () => {
 
     const fetchResults = async () => {
 
-      console.log("inside fetch")
-
-      commonService.getData({   'by_company_id':'129',
-      'mode':'suggest',
-      'page':'1',
-      'per_page':'45',
-      'query':query})
-
-       
-        .then(res => {
+      commonService.getData({query}).then(res => {
         const results = res.data.products;
         results.forEach(function (doc) {
             var {name, price, image_url, active_in_store, id} = doc
@@ -32,7 +23,6 @@ const Home = () => {
 
     useEffect(() => {
         fetchResults();
-        console.log("inside use effect")
     }, [query]);
 
     const updateQuery = (newQuery) => {

@@ -3,26 +3,30 @@ import config from '../config';
 
 const client = axios.create(config.api);
 
-// Request interceptor
-client.interceptors.request.use(
-  request => request,
-  //error => //throw {new Error(error)}
-);
-
-// Response interceptor
-client.interceptors.response.use(
-  response => response,
-  //error => throw new Error(error)
-);
+const defaultParameters = { 'by_company_id':'129',
+                            'mode':'suggest',
+                            'page':'1',
+                            'per_page':'45'}
 
 const commonService = {
   getData(params) {
     return client.request({
       method: 'get',
-      url: '/',
-      params,
+      url: 'v1/products/search?/',
+      params: {...defaultParameters,
+        'query':params.query,
+        'per_page':params.per_page,
+        'page':params.page,
+        'mode':params.mode,},
     });
   },
+  putData(params){
+      return client.request({
+          method: 'put',
+          url: '/',
+          params
+      })
+  }
 };
 
 export { commonService };
