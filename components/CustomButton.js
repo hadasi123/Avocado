@@ -1,34 +1,27 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import * as strings from "../constants/strings";
+import { TouchableOpacity, StyleSheet, Text } from "react-native";
 
 const CustomButton = (props) => {
 
+    const {text, icon, backgroundColor, onClick} = props;
+
+    const styles = useStyles(backgroundColor);
+
     return(
-        <View style={styles.container}>
-            {props.available? 
-                <MaterialCommunityIcons 
-                    name="cart"
-                    color={"#000000"}
-                    size={20} /> :
-                <MaterialCommunityIcons
-                    name="close-octagon"
-                    color={"#000000"}
-                    size={20} />}
-                
-            <Text style={styles.text}>
-                {props.available?
-                    strings.add_to_cart : 
-                    strings.not_available}</Text>
-        </View>
+        <TouchableOpacity
+            style={styles.container}
+            onPress={onClick}>
+            {icon}
+            <Text style={styles.text}>{text}</Text>
+        </TouchableOpacity>
     );
 }
 
-const styles = StyleSheet.create({
+const useStyles = (backgroundColor) =>
+  StyleSheet.create({
     container: {
         height:40,
-        backgroundColor:"#fcba03",
+        backgroundColor:backgroundColor,
         flex:1,
         flexDirection:"row-reverse",
         paddingHorizontal:8,
@@ -36,11 +29,6 @@ const styles = StyleSheet.create({
         borderRadius:10,
         alignItems:"center",
         justifyContent:"space-evenly"
-    },
-    image: {
-        height:30,
-        width:30,
-        paddingHorizontal:10
     },
     text: {
         textAlign:"right"

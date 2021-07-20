@@ -1,12 +1,14 @@
 import React from "react";
-import { View, Text} from "react-native";
+import BaseScreen from "../components/BaseScreen";
+import * as strings from "../constants/strings";
+import * as colors from "../constants/colors";
 
 const Profile = () => {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor:"#654789"}}>
-          <Text>Profile!</Text>
-        </View>
-      );
+  return (
+    <BaseScreen
+    title={strings.profile}
+    backgroundColor={colors.blue}/>
+  );
 }
 
 export default Profile;

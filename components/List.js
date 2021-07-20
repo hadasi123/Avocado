@@ -4,14 +4,18 @@ import {ShoppingItem} from "../components";
 
 const List = (props) => {
 
-    const renderItem = ({ item }) => (
+    const renderItem = ({ item }) => {
+
+      const {name, price, image_url, active_in_store} = item
+
+      return (
         <ShoppingItem
-            name={item.name}
-            price={item.price}
-            image_url={item.image_url}
-            active_in_store={item.active_in_store}
-        ></ShoppingItem>
-    );
+            name={name}
+            price={price}
+            image_url={image_url}
+            active_in_store={active_in_store}
+        />
+      )};
   
     return (
       <SafeAreaView>

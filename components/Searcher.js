@@ -1,6 +1,7 @@
 import React, {useState } from "react";
 import { View, StyleSheet,TextInput, TouchableOpacity } from "react-native";
 import * as strings from "../constants/strings";
+import * as colors from "../constants/colors";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Searcher = (props) => {
@@ -18,7 +19,7 @@ const Searcher = (props) => {
                         placeholder={strings.search_hint} />
             <TouchableOpacity
                 onPress={()=>props.callback(text)}>
-                <MaterialCommunityIcons name="magnify" color={"#0398fc"} size={30} />
+                <MaterialCommunityIcons name="magnify" color={colors.blue} size={30} />
             </TouchableOpacity>
 
         </View>
@@ -28,7 +29,7 @@ const Searcher = (props) => {
 const styles = StyleSheet.create({
     container: {
         height:50,
-        backgroundColor:"#fcba03",
+        backgroundColor:colors.yellow,
         flexDirection:"row-reverse",
         alignItems:"center",
         paddingHorizontal:50
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     input: {
         height:50,
         flex:1,
-        color:"#ffffff",
+        color:colors.white,
         paddingHorizontal:20}
 });
 

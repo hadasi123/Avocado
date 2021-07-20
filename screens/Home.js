@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { View} from "react-native";
+import {Image, View} from "react-native";
 import {Header, Searcher, List} from "../components";
-import axios from 'axios';
+import {commonService} from "../services";
 
 const Home = () => {
-
-    var instance = axios.create({
-        baseURL: 'https://ops.avo.co.il/api/v1/products/search?',
-        headers: {'Accept': 'application/json', 'X-Warehouse-Code':'tel_aviv'}
-      });
 
     const [query, setQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
@@ -18,12 +13,13 @@ const Home = () => {
 
       console.log("inside fetch")
 
-        instance.defaults.params = ({   'by_company_id':'129',
-                                        'mode':'suggest',
-                                        'page':'1',
-                                        'per_page':'45',
-                                        'query':query})
-        instance.get()
+      commonService.getData({   'by_company_id':'129',
+      'mode':'suggest',
+      'page':'1',
+      'per_page':'45',
+      'query':query})
+
+       
         .then(res => {
         const results = res.data.products;
         results.forEach(function (doc) {
@@ -45,9 +41,11 @@ const Home = () => {
 
     return (
         <View style={{ flex:1, justifyContent:'flex-start', flexDirection:'column'}}>
-            <Header></Header>
-            <Searcher callback={updateQuery}></Searcher>
-            <List data={searchResults}></List>
+            <Header icon={<Image
+                style={{height:30, width:30}}
+                source={require('../assets/logo.png')}/>}/>
+            <Searcher callback={updateQuery}/>
+            <List data={searchResults}/>
         </View>
       );
 }

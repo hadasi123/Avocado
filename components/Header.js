@@ -1,10 +1,11 @@
 import React, {useState} from "react";
-import { View, Image, StyleSheet,TouchableOpacity} from "react-native";
+import { View, StyleSheet,TouchableOpacity} from "react-native";
 import Hebrew from "../assets/hebrew.svg";
 import English from "../assets/english.svg";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import * as colors from "../constants/colors";
 
-const Header = () => {
+const Header = (props) => {
 
     const [language, setLanguage] = useState("he")
 
@@ -21,19 +22,16 @@ const Header = () => {
             setLanguage("he")
     }
     
-
     return(
         <View style={styles.container}>
 
             <TouchableOpacity onPress={onBackPress}>
                 <MaterialCommunityIcons
                 name="arrow-right-bold"
-                color={"#0398fc"} size={30} />  
+                color={colors.blue} size={30} />  
             </TouchableOpacity>
            
-            <Image
-                style={{height:30, width:30}}
-                source={require('../assets/logo.png')}/>
+            {props.icon}
 
             <TouchableOpacity onPress={onLanguagePress}>
                 {(language==="he")? <Hebrew width={30} height={20}/> : <English width={30} height={20}/>}
