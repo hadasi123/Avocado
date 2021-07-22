@@ -1,7 +1,8 @@
 import axios from 'axios';
-import config from '../config';
+import api from '../config';
 
-const client = axios.create(config.api);
+const config = api() // can set parameters for accepts and warehouse. If not set, uses defaults
+const client = axios.create(config);
 
 const defaultParameters = { 'by_company_id':'129',
                             'mode':'suggest',

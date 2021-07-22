@@ -1,25 +1,29 @@
-import React, {useState} from "react";
+import React from "react";
 import { View, StyleSheet,TouchableOpacity} from "react-native";
 import Hebrew from "../assets/hebrew.svg";
 import English from "../assets/english.svg";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as colors from "../constants/colors";
+import {connect} from "react-redux";
+import * as actions from "../store/actions";
 
 const Header = (props) => {
-
-    const [language, setLanguage] = useState("he")
 
     const onBackPress = () => {
         //do some logic;
     }
 
     const onLanguagePress = ()=> {
-        if (language==="he")
-            setLanguage("en")
-            //additional logic for changing language
-            //(both UI and request call with lang="en" param)
+        if (props.language==="he")
+        props.dispatch({
+            type: actions.CHANGE_LANGUAGE,
+            payload: { language: 'en' }
+          });
         else
-            setLanguage("he")
+        props.dispatch({
+            type: actions.CHANGE_LANGUAGE,
+            payload: { language: 'he' }
+          });
     }
     
     return(
@@ -34,7 +38,7 @@ const Header = (props) => {
             {props.icon}
 
             <TouchableOpacity onPress={onLanguagePress}>
-                {(language==="he")? <Hebrew width={30} height={20}/> : <English width={30} height={20}/>}
+                {(props.language==="he")? <Hebrew width={30} height={20}/> : <English width={30} height={20}/>}
             </TouchableOpacity>
 
         </View>
@@ -51,4 +55,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Header;
+const mapStateToProps = (state, props) => {
+    return { language: state.language };
+  }
+export default connect(mapStateToProps)(Header);
